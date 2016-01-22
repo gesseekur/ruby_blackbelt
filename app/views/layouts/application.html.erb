@@ -8,7 +8,22 @@
 </head>
 <body>
 
+<% if session[:borrower_id] || session[:lender_id] %>
+	<form action='/sessions' method='post'>
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Log Out">
+	</form>
+<% end %>
+
 <%= yield %>
 
+<%= flash[:msg] %>
+<%= flash[:over] %>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+	<%= e %>
+	<% end %>
+<% end %>
 </body>
 </html>

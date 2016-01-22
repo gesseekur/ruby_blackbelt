@@ -1,2 +1,62 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h2>Lender</h2>
+<form action="/lenders" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<p>
+		First Name:
+		<input type="text" name="lender[first_name]">
+	</p>
+	<p>
+		Last Name:
+		<input type="text" name="lender[last_name]">
+	</p>
+	<p>
+		Email:
+		<input type="text" name="lender[email]">
+	</p>
+	<p>
+		Password:
+		<input type="password" name="lender[password]">
+	</p>
+	<p>
+		Money:
+		<input type="number" min="1" max="10000"  placeholder="$" name="lender[money]">
+	</p>
+	<input type="submit" value="Register">
+</form>
+	<a href="/sessions">Already Registered?</a>
+
+<h2>Borrower</h2>
+<form action="/borrowers" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<p>
+		First Name:
+		<input type="text" name="borrower[first_name]">
+	</p>
+	<p>
+		Last Name:
+		<input type="text" name="borrower[last_name]">
+	</p>
+	<p>
+		Email:
+		<input type="text" name="borrower[email]">
+	</p>
+	<p>
+		Password:
+		<input type="password" name="borrower[password]">
+	</p>
+	<p>
+		Need Money For:
+		<input type="text" name="borrower[purpose]">
+	</p>
+	<p>
+		Description:
+		<textarea name="borrower[description]"></textarea>
+	</p>
+	<p>
+		Amount Needed:
+		<input type="number" min="1" max="10000" placeholder="$" name="borrower[money]">
+	</p>
+	<input type="submit" value="Register">
+</form>
+	
+	<a href="/sessions">Already Registered?</a>

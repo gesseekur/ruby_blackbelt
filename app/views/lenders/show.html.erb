@@ -1,0 +1,83 @@
+<style>
+	 
+ table {
+	border:1px solid black;
+	border-collapse: collapse;
+ }
+ 	
+ td {
+ 	border: 1px solid black;
+ }
+
+</style>
+<h4>Name: <%= @lender.first_name %> <%= @lender.last_name %></h4>
+<h4>Account balance: <%= number_to_currency(@lender.money) %></h4>
+
+<h3>List of people in need of help:</h3>
+<table>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Need Money for</td>
+			<td>Reason for Loan</td>
+			<td>Amount Needed</td>
+			<td>Amount Raised</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @borrowers %>
+		<% @borrowers.each do |b|%>
+		<% if b.money >= 0 %> 
+		<tr>
+			<td><%= b.first_name %> <%= b.last_name %></td>
+			<td><%= b.purpose %> </td>
+			<td><%= b.description %> </td>
+			<td><%= number_to_currency(b.money) %> </td>
+			<td><%= number_to_currency(b.sum_raised) %> </td>
+			<td>
+				<form action="/history" method="post">
+					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					<input type="number" min="1" max="10000" placeholder="$" name="amount">
+					<input type="hidden" name="raised" value="<%= b.sum_raised %>">
+					<input type="hidden" name="lender_id" value="<%= current_user_lender.id %>">
+					<input type="hidden" name="borrower_id" value="<%= b.id %>">
+					<input type="submit" value="Lend">
+				</form>
+			</td>
+		</tr>
+		<% end %>
+		<% end %>
+		<% end %>
+	</tbody>
+</table>
+
+<h3>List of People you lend money to: </h3>
+<table>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Need Money for</td>
+			<td>Reason for Loan</td>
+			<td>Amount Needed</td>
+			<td>Amount Raised</td>
+			<td>Amount Lent</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @borrowered %>
+		<% @borrowered.each do |b| %>
+		<% if b.borrower.money >= 0 %> 
+		<tr>
+			<td><%= b.borrower.first_name %> <%= b.borrower.last_name%> </td>
+			<td><%= b.borrower.purpose %> </td>
+			<td><%= b.borrower.description %> </td>
+			<td><%= number_to_currency(b.borrower.money) %> </td>
+			<td><%= number_to_currency(b.borrower.sum_raised) %> </td>
+			<td><%= number_to_currency(b.amount) %> </td>
+		</tr>
+	</tbody>
+	<% end %>
+	<% end %>
+	<% end %>
+</table>

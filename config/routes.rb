@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  get 'users/index'
+
+  get 'histories/create'
+
+  root 'users#index'
+  get 'users' => 'users#index'
+  post 'lenders' => 'lenders#create'
+  post 'borrowers' => 'borrowers#create'
+  post 'sessions' => 'sessions#create'
+  get 'sessions' => 'sessions#index'
+  delete 'sessions' => 'sessions#destroy'
+  get 'borrowers/:id' => 'borrowers#show'
+  get 'lenders/:id'=> 'lenders#show'
+  get 'borrowers/:id/edit' => 'borrowers#update'
+  post 'history' => 'histories#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

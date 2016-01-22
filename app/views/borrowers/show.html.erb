@@ -1,0 +1,38 @@
+<style>
+	 
+ table {
+	border:1px solid black;
+	border-collapse: collapse;
+ }
+ 	
+ td {
+ 	border: 1px solid black;
+ }
+
+</style>
+
+<h4>Name: <%= @borrower.first_name %> <%= @borrower.last_name %> </h4>
+<h4>Amount Need: <%= number_to_currency(@borrower.money) %> </h4>
+<h4>Amount Raised: <%= number_to_currency(@borrower.raised) %> </h4>
+
+<h2>List of people who lend you money:</h2>
+<table>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Email</td>
+			<td>Amount Lent</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @lender %>
+		<% @lender.each do |l| %>
+		<tr>
+			<td><%= l.lender.first_name %> <%= l.lender.last_name %> </td>
+			<td><%= l.lender.email %> </td>
+			<td><%= l.amount %> </td>
+		</tr>
+		<% end %>
+		<% end %>
+	</tbody>
+</table>
