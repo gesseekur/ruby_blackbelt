@@ -10,7 +10,7 @@
  }
 
 </style>
-
+<div CLASS="container">
 <h4>Name: <%= @borrower.first_name %> <%= @borrower.last_name %> </h4>
 <h4>Amount Need: <%= number_to_currency(@borrower.money) %> </h4>
 <h4>Amount Raised: <%= number_to_currency(@borrower.raised) %> </h4>
@@ -36,3 +36,4 @@
 		<% end %>
 	</tbody>
 </table>
+</div>

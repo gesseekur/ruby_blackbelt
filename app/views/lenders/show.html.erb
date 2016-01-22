@@ -10,6 +10,8 @@
  }
 
 </style>
+
+<div CLASS="container">
 <h4>Name: <%= @lender.first_name %> <%= @lender.last_name %></h4>
 <h4>Account balance: <%= number_to_currency(@lender.money) %></h4>
 
@@ -81,3 +83,4 @@
 	<% end %>
 	<% end %>
 </table>
+</div>
